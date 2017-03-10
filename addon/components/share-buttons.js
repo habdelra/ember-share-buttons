@@ -2,6 +2,8 @@ import Ember from 'ember';
 import template from '../templates/components/share-buttons';
 import $ from 'jquery';
 
+const { computed } = Ember;
+
 const defaultNetworks = [
   'pinterest',
   'twitter',
@@ -30,6 +32,18 @@ export default Ember.Component.extend({
     }
     this.set('networks', networks);
   },
+
+  pageTitle: computed(function() {
+    return this.title();
+  }).volatile(),
+
+  pageDescription: computed(function() {
+    return this.description();
+  }).volatile(),
+
+  pageUrl: computed(function() {
+    return this.url();
+  }).volatile(),
 
   shareActions: {
     facebook(config) {
@@ -72,13 +86,6 @@ export default Ember.Component.extend({
         url: this.url(),
         title: this.title(),
         summary: this.description()
-      });
-    },
-
-    email() {
-      openPopup('mailto:', {
-        subject: this.title(),
-        body: `${this.description()}\n${this.url()}`
       });
     },
 
