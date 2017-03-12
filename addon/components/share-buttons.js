@@ -1,4 +1,5 @@
 import Ember from 'ember';
+import inject from 'ember-service/inject';
 import template from '../templates/components/share-buttons';
 import $ from 'jquery';
 
@@ -17,6 +18,8 @@ const defaultNetworks = [
 
 export default Ember.Component.extend({
   classNames: ['share-buttons'],
+  fastboot: inject(),
+  isFastBoot: computed.readOnly('fastboot.isFastBoot'),
   layout: template,
   config: null,
   tagName: 'ul',
@@ -34,15 +37,21 @@ export default Ember.Component.extend({
   },
 
   pageTitle: computed(function() {
-    return this.title();
+    if (!this.get('isFastBoot')) {
+      return this.title();
+    }
   }).volatile(),
 
   pageDescription: computed(function() {
-    return this.description();
+    if (!this.get('isFastBoot')) {
+      return this.description();
+    }
   }).volatile(),
 
   pageUrl: computed(function() {
-    return this.url();
+    if (!this.get('isFastBoot')) {
+      return this.url();
+    }
   }).volatile(),
 
   shareActions: {
