@@ -36,19 +36,19 @@ export default Ember.Component.extend({
     this.set('networks', networks);
   },
 
-  pageTitle: computed('updateTime', function() {
+  pageTitle: computed('ogTitle', function() {
     if (!this.get('isFastBoot')) {
-      return this.title();
+      return this.get('ogTitle') || this.title();
     }
   }).volatile(),
 
-  pageDescription: computed('updateTime', function() {
+  pageDescription: computed('ogDescription', function() {
     if (!this.get('isFastBoot')) {
-      return this.description();
+      return this.get('ogDescription') || this.description();
     }
   }).volatile(),
 
-  pageUrl: computed('updateTime', function() {
+  pageUrl: computed(function() {
     if (!this.get('isFastBoot')) {
       return this.url();
     }
