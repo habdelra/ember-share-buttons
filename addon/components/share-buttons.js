@@ -36,19 +36,19 @@ export default Ember.Component.extend({
     this.set('networks', networks);
   },
 
-  pageTitle: computed(function() {
+  pageTitle: computed('updateTime', function() {
     if (!this.get('isFastBoot')) {
       return this.title();
     }
   }).volatile(),
 
-  pageDescription: computed(function() {
+  pageDescription: computed('updateTime', function() {
     if (!this.get('isFastBoot')) {
       return this.description();
     }
   }).volatile(),
 
-  pageUrl: computed(function() {
+  pageUrl: computed('updateTime', function() {
     if (!this.get('isFastBoot')) {
       return this.url();
     }
