@@ -1,6 +1,6 @@
 {{#each networks as |network|}}
   {{#if (eq network.name 'email')}}
-    <li class={{network.name}} ><a href="mailto:?to&body={{pageDescription}} {{pageUrl}}&subject={{pageTitle}}" ></a></li>
+    <li class={{network.name}} ><a href="mailto:?subject={{pageTitle}}&body={{pageDescription}} {{pageUrl}}" ></a></li>
   {{else}}
     <li class={{network.name}} ><a {{action "share" network}} ></a></li>
   {{/if}}
